@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="jumbotron text-center">
+    <h4 class="text-danger">{{ error }}</h4>
+    <div class="container">
+
+        <blockquote class="blockquote text-center">
+            <h1>
+                <p class="mb-0 font-italic">Education is what remains after one has forgotten what one has learned in
+                    school.</p>
+                <footer class="blockquote-footer text-right">Albert Einstein</footer>
+            </h1>
+        </blockquote>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static 'physics.png' %}" alt="Card image cap" height="200">
+                <div class="card-body">
+                    <a href="#">
+                        <h5 class="card-title text-center">Physics Exam</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static 'chemistry.jpeg' %}" alt="Card image cap" height="200">
+                <div class="card-body">
+                    <a href="#">
+                        <h5 class="card-title text-center">Chemistry Exam</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static 'math.jpg' %}" alt="Card image cap" height="200">
+                <div class="card-body">
+                    <a href="{% url 'mathexamindex' %}">
+                        <h5 class="card-title text-center">Mathematics Exam</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static 'biology.jpeg' %}" alt="Card image cap" height="200">
+                <div class="card-body">
+                    <a href="#">
+                        <h5 class="card-title text-center">Biology Exam</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static 'english.jpeg' %}" alt="Card image cap" height="200">
+                <div class="card-body">
+                    <a href="#">
+                        <h5 class="card-title text-center">English Exam</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static 'bangla.png' %}" alt="Card image cap" height="200">
+                <div class="card-body">
+                    <a href="#">
+                        <h5 class="card-title text-center">Bangla Exam</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

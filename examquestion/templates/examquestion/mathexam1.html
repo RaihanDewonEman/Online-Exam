@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if countPoint >= 0 %}
+
+<h2>You have got  {{ countPoint }} point ! </h2>
+
+{% endif %}
+
+<div class="pl-5">
+
+    <form action="{% url 'mathexam1' %}" method="POST">
+        {% csrf_token %}
+
+
+        <div class="pt-5 pb-5">
+            1. P(2, 5), Q(5, 9) এবং S(6, 8) বিন্দুত্রয় PQRS রম্বসের শীর্ষবিন্দু হলে Rএর স্থানাংক -
+            <div class="myradio pt-3">
+                <label for="id_question1_A"><input id="id_question1_A" name="question1" type="radio" value="A" required>
+                    (12, 9)</label>
+            </div>
+            <div class="myradio">
+                <label for="id_question1_B"><input id="id_question1_B" name="question1" type="radio" value="B" required>
+                    (7/2, 7)</label>
+            </div>
+            <div class="myradio">
+                <label for="id_question1_C"><input id="id_question1_C" name="question1" type="radio" value="C" required>
+                    (4, 13/2)</label>
+            </div>
+            <div class="myradio">
+                <label for="id_question1_D"><input id="id_question1_D" name="question1" type="radio" value="D" required>
+                    (9, 12)</label>
+            </div>
+        </div>
+
+
+        <div class="pb-5">
+            2. 1 হতে 99পর্যন্ত সংখ্যাগুলি থেকে দৈবচয়ন পদ্ধতিতে একটি সংখ্যা নেওয়া হলে সেটি বর্গ হওয়ার সম্ভাবনা হবে-
+            <div class="myradio2 pt-3">
+                <label for="id_question2_A"><input id="id_question2_A" name="question2" type="radio" value="A" required> 1/9 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question2_B"><input id="id_question2_B" name="question2" type="radio" value="B" required> 2/9 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question2_C"><input id="id_question2_C" name="question2" type="radio" value="C" required> 1/11 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question2_D"><input id="id_question2_D" name="question2" type="radio" value="D" required> 2/11 </label>
+            </div>
+        </div>
+
+        <div class="text-center pb-5">
+            <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

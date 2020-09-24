@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="p-5">
+    <div class="p-5">
+
+        <div class="pl-5 pr-5">
+            <div class="pl-5 pr-5">
+                <div class="pl-5 pr-5">
+                    <div class="pl-5 pr-5">
+                        <div class="pl-5 pr-5">
+                            <div class="pl-5 pr-5">
+
+                                <div class="jumbotron pt-5 pb-5 m-5">
+
+                                    <form action="{% url 'signuppage' %}" method="POST">
+                                        {% csrf_token %}
+                                        <h1 class="h2 mb-3 text-center text-secondary font-weight-normal">Please
+                                            Signup!
+                                        </h1>
+                                        <h4 class="text-danger">{{ error }}</h4>
+                                        <div class="user_id pt-5 pb-3 pl-5 ">
+                                            <label for="username">
+                                                <h4> Name: </h4>
+                                            </label>
+                                            <br>
+                                            <input type="text" id="username" name="username" placeholder="User id"
+                                                required autofocus>
+                                        </div>
+                                        <div class="password pb-3 pl-5">
+                                            <label for="userPassword">
+                                                <h4>Password:</h4>
+                                            </label>
+                                            <br>
+                                            <input type="password" id="userPassword" name="userPassword"
+                                                placeholder="Password" required>
+                                        </div>
+                                        <div class="confirmPassword pb-3 pl-5">
+                                            <label for="userConfirmPassword">
+                                                <h4>Confirm Password:</h4>
+                                            </label>
+                                            <br>
+                                            <input type="password" id="userConfirmPassword" name="userConfirmPassword"
+                                                placeholder="Confirm Password" required>
+                                        </div>
+                                        <div class="text-center pt-3">
+                                            <button class="btn btn-lg btn-primary btn-lg" type="submit">Sign up</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

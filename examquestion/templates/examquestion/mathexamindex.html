@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="list-group">
+        <a href="{% url 'mathexam1'%}">     <button type="button" class="list-group-item list-group-item-action active">Exam 1</button> </a>
+        <a href="#">     <button type="button" class="list-group-item list-group-item-action">Exam 2</button>    </a>
+        <a href="#">     <button type="button" class="list-group-item list-group-item-action">Exam 3</button>    </a>    
+        <a href="#">     <button type="button" class="list-group-item list-group-item-action"> Exam 4</button>   </a>
+        <a href="#">     <button type="button" class="list-group-item list-group-item-action"> Exam 5</button>   </a>
+    </div>
+
+</div>
+
+
+{% endblock %}
