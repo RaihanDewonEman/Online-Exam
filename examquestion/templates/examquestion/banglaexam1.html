@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'examquestion/list_style.css' %}">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+    <ul class="topnav">
+        <li><a href="{% url 'homepage'%}">Home</a></li>
+        <li><a href="{%url 'banglaexamindex' %}">Bangla exam index</a></li>
+        <li><a href="{% url 'profilepage' %}">Profile</a></li>
+        <li class='right'><form action="{% url 'logoutpage' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Log out</button>
+        </form></li>
+    </ul>
+
+{% if countPoint >= 0 %}
+
+<h2 style=" text-align: center; color: darkred;">You have got  {{ countPoint }} point ! </h2>
+
+{% endif %}
+<div style="padding-top: 10px; padding-bottom: 10px; text-align: center; font-size: larger; color: red;">Exam time will ends in <span id="timer"><span> minutes! </div>
+
+    <!-- custom js -->
+    <script>
+       window.onload = function () {
+          var minute = 10;
+          var sec = 10;
+          var x = setInterval(function () {
+             document.getElementById("timer").innerHTML =
+                minute + " : " + sec;
+                sec--;
+             if (sec == 00 && minute>0) {
+                minute--;
+                sec = 60;
+             }
+             if (minute == 0 && second==00) {
+                 clearInterval(x)
+                document.getElementById("timer").innerHTML = "EXPIRED";
+            }
+          }, 1000);
+       };
+    </script>
+
+<div style="padding-left: 50px; padding-top: 40px; background-color: rgb(160, 229, 177); color: black;">
+
+    <form action="{% url 'banglaexam1' %}" method="POST">
+        {% csrf_token %}
+
+
+        <div class="pt-5 pb-5">
+            ১. বাক্যের মৌলিক উপাদান কোনটি ? -
+            <div class="myradio pt-3">
+                <label for="id_question1_A"><input id="id_question1_A" name="question1" type="radio" value="A" required>
+                    শব্দ</label>
+            </div>
+            <div class="myradio">
+                <label for="id_question1_B"><input id="id_question1_B" name="question1" type="radio" value="B" required>
+                    বর্ণ</label>
+            </div>
+            <div class="myradio">
+                <label for="id_question1_C"><input id="id_question1_C" name="question1" type="radio" value="C" required>
+                    বিভক্তি</label>
+            </div>
+            <div class="myradio">
+                <label for="id_question1_D"><input id="id_question1_D" name="question1" type="radio" value="D" required>
+                    ধ্বন্নি</label>
+            </div>
+        </div>
+
+
+        <div class="pb-5">
+            2. ‘ঈ’ + ‘ই’ = ঈ - এ সূত্রের সন্ধিজাত শব্দ কোনটি ?
+            <div class="myradio2 pt-3">
+                <label for="id_question2_A"><input id="id_question2_A" name="question2" type="radio" value="A" required> অতীত </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question2_B"><input id="id_question2_B" name="question2" type="radio" value="B" required> পরীক্ষা </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question2_C"><input id="id_question2_C" name="question2" type="radio" value="C" required> সতীন্দ্র </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question2_D"><input id="id_question2_D" name="question2" type="radio" value="D" required> সতীশ </label>
+            </div>
+        </div>
+
+        <div class="pb-5">
+            ৩. "বাঙ্গালা ব্যাকরণ" রচনা করেন?
+            <div class="myradio2 pt-3">
+                <label for="id_question3_A"><input id="id_question3_A" name="question3" type="radio" value="A" required> শ্যামাচরণ সরকার  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question3_B"><input id="id_question3_B" name="question3" type="radio" value="B" required> নকুলেশ্বর বিদ্যাভূষণ  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question3_C"><input id="id_question3_C" name="question3" type="radio" value="C" required>  ডঃ মুহাম্মদ  শহীদুল্লাহ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question3_D"><input id="id_question3_D" name="question3" type="radio" value="D" required> রামমোহন রায় </label>
+            </div>
+        </div>
+
+        <div class="pb-5">
+            ৪. কোনগুলো কণ্ঠধ্বনি?
+            <div class="myradio2 pt-3">
+                <label for="id_question4_A"><input id="id_question4_A" name="question4" type="radio" value="A" required> ত, থ, দ, ধ, ন  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question4_B"><input id="id_question4_B" name="question4" type="radio" value="B" required> প, ফ, ব, ভ, ম </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question4_C"><input id="id_question4_C" name="question4" type="radio" value="C" required> ক, খ, গ, ঘ, ঙ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question4_D"><input id="id_question4_D" name="question4" type="radio" value="D" required> চ, ছ, জ, ঝ, ঞ </label>
+            </div>
+        </div>
+
+        <div class="pb-5">
+            ৫. বাংলা বর্ণমালায় পূর্ণমাত্রা ব্যবহৃত হয় কয়টি বর্ণে?
+            <div class="myradio2 pt-3">
+                <label for="id_question5_A"><input id="id_question5_A" name="question5" type="radio" value="A" required> ৩১ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question5_B"><input id="id_question5_B" name="question5" type="radio" value="B" required> ৩০  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question5_C"><input id="id_question5_C" name="question5" type="radio" value="C" required> ৩২ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question5_D"><input id="id_question5_D" name="question5" type="radio" value="D" required> ২৯ </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ৬. কোন ধ্বনি উচ্চারণের সময় বাতাসের চাপের আধিক্য থাকে?
+            <div class="myradio2 pt-3">
+                <label for="id_question6_A"><input id="id_question6_A" name="question6" type="radio" value="A" required> মহাপ্রাণ ধ্বনি  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question6_B"><input id="id_question6_B" name="question6" type="radio" value="B" required> অল্পপ্রাণ ধ্বনি </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question6_C"><input id="id_question6_C" name="question6" type="radio" value="C" required> অঘোষ ধ্বনি </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question6_D"><input id="id_question6_D" name="question6" type="radio" value="D" required> ঘোষ ধ্বনি </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ৭. বাংলা বর্ণমালা কোন লিপির বিবর্তিত রূপ?
+            <div class="myradio2 pt-3">
+                <label for="id_question7_A"><input id="id_question7_A" name="question7" type="radio" value="A" required> সংস্কৃত </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question7_B"><input id="id_question7_B" name="question7" type="radio" value="B" required> ব্রাহ্মী </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question7_C"><input id="id_question7_C" name="question7" type="radio" value="C" required> খরোষ্ঠী </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question7_D"><input id="id_question7_D" name="question7" type="radio" value="D" required> বেদ </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ৮. বিভক্তিযুক্ত শব্দ ও ধাতুকে বলে-
+            <div class="myradio2 pt-3">
+                <label for="id_question8_A"><input id="id_question8_A" name="question8" type="radio" value="A" required> কারক </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question8_B"><input id="id_question8_B" name="question8" type="radio" value="B" required> শব্দ  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question8_C"><input id="id_question8_C" name="question8" type="radio" value="C" required> পদ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question8_D"><input id="id_question8_D" name="question8" type="radio" value="D" required> ক্রিয়াপদ </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ৯. " আশার ছলনে ভুলি কি ফল লভিনু হায়"- বাক্যে 'ছলনে' কোন কারকে কোন বিভক্তি?
+            <div class="myradio2 pt-3">
+                <label for="id_question9_A"><input id="id_question9_A" name="question9" type="radio" value="A" required> করণের সপ্তমী  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question9_B"><input id="id_question9_B" name="question9" type="radio" value="B" required> অপাদানে সপ্তমী </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question9_C"><input id="id_question9_C" name="question9" type="radio" value="C" required> অধিকরণে সপ্তমী </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question9_D"><input id="id_question9_D" name="question9" type="radio" value="D" required> কর্মে সপ্তমী  </label>
+            </div>
+        </div>
+        <div class="pb-5">
+             ১০. ' গায়ে-হলুদ' কোন সমাস?
+            <div class="myradio2 pt-3">
+                <label for="id_question10_A"><input id="id_question10_A" name="question10" type="radio" value="A" required> অলুক দ্বন্দ্ব </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question10_B"><input id="id_question10_B" name="question10" type="radio" value="B" required> অলুক তৎপুরুষ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question10_C"><input id="id_question10_C" name="question10" type="radio" value="C" required> অলুক বহুব্রীহি </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question10_D"><input id="id_question10_D" name="question10" type="radio" value="D" required> ব্যতিহার বহুব্রীহি </label>
+            </div>
+        </div>
+        <div class="pb-5">
+             ১১. "গুরুচণ্ডালী দোষ" বলতে বুঝায়-
+            <div class="myradio2 pt-3">
+                <label for="id_question11_A"><input id="id_question11_A" name="question11" type="radio" value="A" required> বিদেশি ও  দেশি ভাষার মিশ্রণ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question11_B"><input id="id_question11_B" name="question11" type="radio" value="B" required> বাংলা ও ইংরেজি ভাষার মিশ্রণ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question11_C"><input id="id_question11_C" name="question11" type="radio" value="C" required> সাধু ও চলিত ভাষার মিশ্রণ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question11_D"><input id="id_question11_D" name="question11" type="radio" value="D" required> সাধু ও আঞ্চলিক ভাষার মিশ্রণ </label>
+            </div>
+        </div>
+        <div class="pb-5">
+             ১২. শব্দের ক্ষুদ্রতম একক কোনটি? 
+            <div class="myradio2 pt-3">
+                <label for="id_question12_A"><input id="id_question12_A" name="question12" type="radio" value="A" required> বর্ণ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question12_B"><input id="id_question12_B" name="question12" type="radio" value="B" required> ধ্বনি  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question12_C"><input id="id_question12_C" name="question12" type="radio" value="C" required> শব্দ  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question12_D"><input id="id_question12_D" name="question12" type="radio" value="D" required> প্রতীক </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ১৩. মধ্যপদলোপী কর্মধারয়ের দৃষ্টান্ত-
+            <div class="myradio2 pt-3">
+                <label for="id_question13_A"><input id="id_question13_A" name="question13" type="radio" value="A" required> ঘরছাড়া </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question13_B"><input id="id_question13_B" name="question13" type="radio" value="B" required> অরুণরাঙা </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question13_C"><input id="id_question13_C" name="question13" type="radio" value="C" required> হাসিমুখ </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question13_D"><input id="id_question13_D" name="question13" type="radio" value="D" required> ক্ষণস্থায়ী </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ১৪. যে শব্দ বা শব্দাংশের অংশকে আর কোনো বিশ্লেষণ বা ক্ষুদ্রতম অংশে ভাগ করা যায় না, তাকে বলে-
+            <div class="myradio2 pt-3">
+                <label for="id_question14_A"><input id="id_question14_A" name="question14" type="radio" value="A" required> প্রত্যয়  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question14_B"><input id="id_question14_B" name="question14" type="radio" value="B" required> কারক </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question14_C"><input id="id_question14_C" name="question14" type="radio" value="C" required> প্রকৃতি </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question14_D"><input id="id_question14_D" name="question14" type="radio" value="D" required> বর্ণ </label>
+            </div>
+        </div>
+        <div class="pb-5">
+            ১৫. মরি মরি! কি সুন্দর প্রভাতের রূপ- বাক্যে মরি মরি কোন শ্রেণীর অব্যয়?
+            <div class="myradio2 pt-3">
+                <label for="id_question15_A"><input id="id_question15_A" name="question15" type="radio" value="A" required> সমন্বয়ী </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question15_B"><input id="id_question15_B" name="question15" type="radio" value="B" required> অনন্বয়ী </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question15_C"><input id="id_question15_C" name="question15" type="radio" value="C" required> অনুকার  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question15_D"><input id="id_question15_D" name="question15" type="radio" value="D" required> পদান্বয়ী  </label>
+            </div>
+        </div>
+        
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            <button type="submit" value="Submit"> Submit </button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

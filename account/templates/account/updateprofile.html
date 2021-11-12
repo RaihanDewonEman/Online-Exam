@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style=" margin-top: 100px; margin-left: 400px; padding: 20px; width: 25%; border: 4px cornflowerblue; border-style: solid; border-radius: 10px; background-color: darkgrey; box-shadow: 5px 5px rgb(152, 185, 192);" >
+    <form action="{% url 'updatepro' %}" method="POST" style="padding-bottom: 10px;">
+        {% csrf_token %}
+        <label for="fname">First Name</label><br>
+        <input type ="text" id="fname" name="fname" placeholder="Federico" >
+        <br>
+        <br>
+        <label for="lname">Last Name</label><br>
+        <input type ="text" id="lname" name="lname" placeholder="Valverde" >
+        <br>
+        <br>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" placeholder="example@gmail.com">
+        <br>
+        <br>
+        <button type="submit" style="background-color: #110e9c; border: none;color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px;">Update</button>
+    </form>
+
+{% endblock %}

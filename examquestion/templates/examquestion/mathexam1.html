@@ -1,20 +1,59 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'examquestion/list_style.css' %}">
+    <title>{{ title }}</title>
+</head>
+<body>
 
-{% block content %}
+    <ul class="topnav">
+        <li><a href="{% url 'homepage'%}">Home</a></li>
+        <li><a href="{%url 'mathexamindex' %}">Math exam index</a></li>
+        <li><a href="{% url 'profilepage' %}">Profile</a></li>
+        <li class='right'><form action="{% url 'logoutpage' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Log out</button>
+        </form></li>
+    </ul>
 
 {% if countPoint >= 0 %}
 
-<h2>You have got  {{ countPoint }} point ! </h2>
+<h2 style=" text-align: center; color: darkred;">You have got  {{ countPoint }} point ! </h2>
 
 {% endif %}
+ <div style="padding-top: 10px; padding-bottom: 10px; text-align: center; font-size: larger; color: red;">Exam time will ends in <span id="timer"><span> minutes! </div>
 
-<div class="pl-5">
+    <!-- custom js -->
+    <script>
+       window.onload = function () {
+          var minute = 10;
+          var sec = 10;
+          var x = setInterval(function () {
+             document.getElementById("timer").innerHTML =
+                minute + " : " + sec;
+                sec--;
+             if (sec == 00 && minute>0) {
+                minute--;
+                sec = 60;
+             }
+             if (minute == 0 && second==00) {
+                 clearInterval(x)
+                document.getElementById("timer").innerHTML = "EXPIRED";
+            }
+          }, 1000);
+       };
+    </script>
+<div style="padding-left: 50px; padding-bottom: 50px; padding-top: 40px; background-color: rgb(160, 229, 177); color: black;">
 
     <form action="{% url 'mathexam1' %}" method="POST">
         {% csrf_token %}
 
 
-        <div class="pt-5 pb-5">
+        <div style="padding-top: 10px; padding-bottom: 10px;">
             1. P(2, 5), Q(5, 9) এবং S(6, 8) বিন্দুত্রয় PQRS রম্বসের শীর্ষবিন্দু হলে Rএর স্থানাংক -
             <div class="myradio pt-3">
                 <label for="id_question1_A"><input id="id_question1_A" name="question1" type="radio" value="A" required>
@@ -35,7 +74,7 @@
         </div>
 
 
-        <div class="pb-5">
+        <div style="padding-top: 10px; padding-bottom: 10px;">
             2. 1 হতে 99পর্যন্ত সংখ্যাগুলি থেকে দৈবচয়ন পদ্ধতিতে একটি সংখ্যা নেওয়া হলে সেটি বর্গ হওয়ার সম্ভাবনা হবে-
             <div class="myradio2 pt-3">
                 <label for="id_question2_A"><input id="id_question2_A" name="question2" type="radio" value="A" required> 1/9 </label>
@@ -51,12 +90,141 @@
             </div>
         </div>
 
-        <div class="text-center pb-5">
-            <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৩. শূন্যে নিক্ষিপ্ত একটি পাথর খণ্ডের সর্বাধিক পাল্লার মান 120 ft হলে, সর্বোচ্চ উচ্চতার মান-
+            <div class="myradio2 pt-3">
+                <label for="id_question3_A"><input id="id_question3_A" name="question3" type="radio" value="A" required> 3ft </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question3_B"><input id="id_question3_B" name="question3" type="radio" value="B" required> 60√3ft </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question3_C"><input id="id_question3_C" name="question3" type="radio" value="C" required> 120ft </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question3_D"><input id="id_question3_D" name="question3" type="radio" value="D" required> 240ft </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৪.1,2,3, দ্বারা গঠিত  তিন অঙ্কবিশিষ্ট সংখ্যাগুলো হতে দৈবচয়ন পদ্ধতিতে একটি সংখ্যা নেয়া হলে সংখ্যাটি 10 দ্বারা বিভাজ্য হওয়ার সম্ভাবনা-
+            <div class="myradio2 pt-3">
+                <label for="id_question4_A"><input id="id_question4_A" name="question4" type="radio" value="A" required> 1/2  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question4_B"><input id="id_question4_B" name="question4" type="radio" value="B" required> 1/3 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question4_C"><input id="id_question4_C" name="question4" type="radio" value="C" required> 2/9 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question4_D"><input id="id_question4_D" name="question4" type="radio" value="D" required> 1/6 </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৫. 40 হতে 50 সংখ্যাগুলি থেকে  দৈবচয়ন পদ্ধতিতে একটি সংখ্যা নেয়া হলে। সংখ্যাটি মৌলিক না হওয়ার সম্ভাব্যতা কত?
+            <div class="myradio2 pt-3">
+                <label for="id_question5_A"><input id="id_question5_A" name="question5" type="radio" value="A" required> 8/11  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question5_B"><input id="id_question5_B" name="question5" type="radio" value="B" required> 5/11 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question5_C"><input id="id_question5_C" name="question5" type="radio" value="C" required> 3/11 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question5_D"><input id="id_question5_D" name="question5" type="radio" value="D" required> 1/11 </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৬.A ঘটনা ঘটার সম্ভাব্যতা P(A) এবং তা না ঘটার সম্ভাব্যতা P(A') হলে কোনটি সঠিক? 
+            <div class="myradio2 pt-3">
+                <label for="id_question6_A"><input id="id_question6_A" name="question6" type="radio" value="A" required> P(A)+P(A')=0  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question6_B"><input id="id_question6_B" name="question6" type="radio" value="B" required> P(A)+P(A')=-2 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question6_C"><input id="id_question6_C" name="question6" type="radio" value="C" required> P(A)+P(A')=-1 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question6_D"><input id="id_question6_D" name="question6" type="radio" value="D" required> P(A)+P(A')=1 </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৭. একটি তাসের প্যাকেট হতে দৈবভাবে একটি  তাস নিলে তা হরতনের টেক্কা হবার সম্ভাবনা কত?
+            <div class="myradio2 pt-3">
+                <label for="id_question7_A"><input id="id_question7_A" name="question7" type="radio" value="A" required> 1/13 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question7_B"><input id="id_question7_B" name="question7" type="radio" value="B" required> 4/13 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question7_C"><input id="id_question7_C" name="question7" type="radio" value="C" required> 1/4 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question7_D"><input id="id_question7_D" name="question7" type="radio" value="D" required> 1/52 </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৮. ইংরেজি বর্ণমালা হতে যে কোন একটি স্বরবর্ণ বাছাইয়ের সম্ভাব্যতা-
+            <div class="myradio2 pt-3">
+                <label for="id_question8_A"><input id="id_question8_A" name="question8" type="radio" value="A" required> 1/26  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question8_B"><input id="id_question8_B" name="question8" type="radio" value="B" required> 21/26 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question8_C"><input id="id_question8_C" name="question8" type="radio" value="C" required> 1/13 </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question8_D"><input id="id_question8_D" name="question8" type="radio" value="D" required> কোনটিই নয় </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ৯. স্থিতিবস্থা থেকে খাড়া নিম্নমুখী গমনের ক্ষেত্রে পতনকাল t = ?
+            <div class="myradio2 pt-3">
+                <label for="id_question9_A"><input id="id_question9_A" name="question9" type="radio" value="A" required> 2√2h/3g  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question9_B"><input id="id_question9_B" name="question9" type="radio" value="B" required> 2√h/2g </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question9_C"><input id="id_question9_C" name="question9" type="radio" value="C" required> √2h/g </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question9_D"><input id="id_question9_D" name="question9" type="radio" value="D" required> √h/g </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            ১০. 5 kg ভরের কোন বস্তুর উপর 2ft / s^2 ত্বরণ ক্রিয়া করলে প্রযুক্ত বলের মান হবে-
+            <div class="myradio2 pt-3">
+                <label for="id_question10_A"><input id="id_question10_A" name="question10" type="radio" value="A" required> 3.1N  </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question10_B"><input id="id_question10_B" name="question10" type="radio" value="B" required> 4.1N </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question10_C"><input id="id_question10_C" name="question10" type="radio" value="C" required> 5.1N </label>
+            </div>
+            <div class="myradio2">
+                <label for="id_question10_D"><input id="id_question10_D" name="question10" type="radio" value="D" required> 1N </label>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            <button type="submit" value="Submit"> Submit </button>
         </div>
 
     </form>
 
 </div>
 
-{% endblock %}
+</body>
+</html>

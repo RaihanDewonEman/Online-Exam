@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style=" text-align: center; padding-top: 20px; color: lightseagreen;">Profile</h1>
+<hr>
+<div style="color: rgb(12, 99, 187); padding-left: 50px; padding-top: 10px; font-size: larger;" >
+    Full Name : {{ user.first_name }} {{ user.last_name}} <br>
+    Username : {{ user.username}} <br>
+    Email: {{ user.email }} <br>
+    Last Login: {{ user.last_login}} <br>
+    Joining date: {{ user.date_joined }} <br>
+
+</div>
+<div>
+    <a href="{% url 'updatepro'%}" style="font-size: larger; padding-left: 50px;">Upadte Profile </a>
+</div>
+{% endblock %}

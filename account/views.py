@@ -43,3 +43,25 @@ def Logout(request):
         auth.logout(request)
         return redirect('homepage')
 
+
+def Profile(request):
+    if not request.user.is_authenticated:
+        return render(request, 'account/home.html',{'name': 'Home page','error':'Please login first!'})
+    else:
+        naam = request.user.username
+        cur_user = User.objects.get(username=naam)
+        return render(request, 'account/profilepage.html',{'name': 'Profile page', 'user': cur_user})
+
+
+def Update_profile(request):
+    if not request.user.is_authenticated:
+        return render(request, 'account/home.html',{'name': 'Home page','error':'Please login first!'})
+    else:
+        if request.method == 'POST':
+            username = request.user.username
+            User.objects.filter(username= username).update( email = request.POST['email'], first_name=request.POST['fname'], last_name=request.POST['lname'])
+            return redirect('profilepage')
+        else:
+            return render(request, 'account/updateprofile.html',{'name': 'Update Profile'})
+
+

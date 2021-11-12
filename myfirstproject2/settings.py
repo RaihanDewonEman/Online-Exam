@@ -126,6 +126,8 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     BASE_DIR / 'myfirstproject2/static/',
+    'account/static',
+    'examquestion/static',
 ]
 
 STATIC_URL = '/static/'
